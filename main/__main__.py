@@ -84,7 +84,7 @@ async def logo(bot, message):
       await x.delete()
     except:
       pass
-    return await message.reply_text("`❌ Something Went Wrong...`\n\nReport This Error In @BETA_BOTSUPPORT)
+    return await message.reply_text("`❌ Something Went Wrong...`\n\nReport This Error In @BETA_BOTSUPPORT")
 
 # Square Logo
 @app.on_message(filters.command("logosq") & filters.incoming & filters.text & ~filters.forwarded & (
