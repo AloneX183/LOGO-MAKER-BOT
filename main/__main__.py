@@ -5,8 +5,7 @@ from pyrogram.errors import FloodWait, UserNotParticipant
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, CallbackQuery
 from main.logo import generate_logo
 from beta.database import insert, getid
-from beta.utils import not_subscribed
-from config import ADMIN
+from config import ADMIN, FORCE_SUB
 
 
 START = """
@@ -26,99 +25,151 @@ HELP = """
 `/logosq BetaBots`
 """
 
-@app.on_message(filters.private & filters.create(not_subscribed))
-async def is_not_subscribed(client, message):
-    await message.reply_text(
-       text="**⚠️Sorry bro,You didn't Joined Our Updates Channel Join now and start again🙏**",
-       reply_markup=InlineKeyboardMarkup([
-           [ InlineKeyboardButton(text="📢𝙹𝚘𝚒𝚗 𝙼𝚢 𝚄𝚙𝚍𝚊𝚝𝚎 𝙲𝚑𝚊𝚗𝚗𝚎𝚕📢", url=client.invitelink)]
-           ])
-       )
 
 # Commands
 @app.on_message(filters.command("start"))
-async def start(bot, message):   
-    insert(int(message.chat.id))
-    await message.reply_photo(
-        photo="https://telegra.ph//file/69b6154eaecdaf3845d9f.jpg",
-        caption=START.format(message.from_user.mention),
-        reply_markup=InlineKeyboardMarkup( [[
-            InlineKeyboardButton(text="Help", callback_data="help_menu"),
-            InlineKeyboardButton(text="Developer", url="t.me/beta_bot_updates")
-            ]]
+async def start(bot, message):
+    if FORCE_SUB:   
+        try:             
+            user = await bot.get_chat_member(FORCE_SUB, message.from_user.id)
+            if user.status == "kicked":
+               await message.reply_text("Sorry, You're Banned")
+               return
+        except UserNotParticipant:
+            await message.reply_text(
+                text="**sorry bro നിങ്ങൾ ഞങ്ങളുടെ ചാനലിൽ ജോയിൻ ചെയ്തിട്ടില്ല താഴെയുള്ള ബട്ടനിൽ ക്ലിക്ക് ചെയ്ത് join ചെയ്യൂ എന്നിട്ട് വീണ്ടും start കൊടുക്കൂ 🙏**",
+                reply_markup=InlineKeyboardMarkup([
+                    [ InlineKeyboardButton(text="📢𝙹𝚘𝚒𝚗 𝙼𝚢 𝚄𝚙𝚍𝚊𝚝𝚎 𝙲𝚑𝚊𝚗𝚗𝚎𝚕📢", url=f"https://t.me/{FORCE_SUB}")]
+              ])
             )
-        )
+            return
+        else:   
+             insert(int(message.chat.id))
+             await message.reply_photo(
+                 photo="https://telegra.ph//file/69b6154eaecdaf3845d9f.jpg",
+                 caption=START.format(message.from_user.mention),
+                 reply_markup=InlineKeyboardMarkup( [[
+                     InlineKeyboardButton(text="Help", callback_data="help_menu"),
+                     InlineKeyboardButton(text="Developer", url="t.me/beta_bot_updates")
+                     ]]
+                     )
+                 )
 
 
 @app.on_message(filters.command("help"))
 async def help(bot, message):
-    await message.reply_photo("https://telegra.ph//file/69b6154eaecdaf3845d9f.jpg",caption=HELP,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="Back", callback_data="start_menu")]]))
+    if FORCE_SUB:   
+        try:             
+            user = await bot.get_chat_member(FORCE_SUB, message.from_user.id)
+            if user.status == "kicked":
+               await message.reply_text("Sorry, You're Banned")
+               return
+        except UserNotParticipant:
+            await message.reply_text(
+                text="**sorry bro നിങ്ങൾ ഞങ്ങളുടെ ചാനലിൽ ജോയിൻ ചെയ്തിട്ടില്ല താഴെയുള്ള ബട്ടനിൽ ക്ലിക്ക് ചെയ്ത് join ചെയ്യൂ എന്നിട്ട് വീണ്ടും start കൊടുക്കൂ 🙏**",
+                reply_markup=InlineKeyboardMarkup([
+                    [ InlineKeyboardButton(text="📢𝙹𝚘𝚒𝚗 𝙼𝚢 𝚄𝚙𝚍𝚊𝚝𝚎 𝙲𝚑𝚊𝚗𝚗𝚎𝚕📢", url=f"https://t.me/{FORCE_SUB}")]
+              ])
+            )
+            return
+        else:  
+             await message.reply_photo("https://telegra.ph//file/69b6154eaecdaf3845d9f.jpg",caption=HELP,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="Back", callback_data="start_menu")]]))
 
 @app.on_message(filters.command("logo") & filters.incoming & filters.text & ~filters.forwarded & (
   filters.group | filters.private))
 async def logo(bot, message):
-  try:
-    text = message.text.replace("logo","").replace("/","").replace("@beta_bot_updates","").strip().upper()
+    if FORCE_SUB:   
+        try:             
+            user = await bot.get_chat_member(FORCE_SUB, message.from_user.id)
+            if user.status == "kicked":
+               await message.reply_text("Sorry, You're Banned")
+               return
+        except UserNotParticipant:
+            await message.reply_text(
+                text="**sorry bro നിങ്ങൾ ഞങ്ങളുടെ ചാനലിൽ ജോയിൻ ചെയ്തിട്ടില്ല താഴെയുള്ള ബട്ടനിൽ ക്ലിക്ക് ചെയ്ത് join ചെയ്യൂ എന്നിട്ട് വീണ്ടും start കൊടുക്കൂ 🙏**",
+                reply_markup=InlineKeyboardMarkup([
+                    [ InlineKeyboardButton(text="📢𝙹𝚘𝚒𝚗 𝙼𝚢 𝚄𝚙𝚍𝚊𝚝𝚎 𝙲𝚑𝚊𝚗𝚗𝚎𝚕📢", url=f"https://t.me/{FORCE_SUB}")]
+              ])
+            )
+            return
+        else:  
+             try:
+                 text = message.text.replace("logo","").replace("/","").replace("@beta_bot_updates","").strip().upper()
     
-    if text == "":
-      return await message.reply_text(HELP)
+                 if text == "":
+                   return await message.reply_text(HELP)
 
-    x = await message.reply_text("`🔍 Generating Logo For You...`")  
-    logo = await generate_logo(text)
+                 x = await message.reply_text("`🔍 Generating Logo For You...`")  
+                 logo = await generate_logo(text)
 
-    if "telegra.ph" not in logo:
-      return await x.edit("`❌ Something Went Wrong...`\n\nReport This Error In @BETA_BOTSUPPORT")
+                 if "telegra.ph" not in logo:
+                   return await x.edit("`❌ Something Went Wrong...`\n\nReport This Error In @BETA_BOTSUPPORT")
       
-    if "error" in logo:
-      return await x.edit(f"`❌ Something Went Wrong...`\n\nReport This Error In @BETA_BOTSUPPORT \n\n`{logo}`")
+                 if "error" in logo:
+                   return await x.edit(f"`❌ Something Went Wrong...`\n\nReport This Error In @BETA_BOTSUPPORT \n\n`{logo}`")
       
-    await x.edit("`🔄 Done Generated... Now Sending You`")
+                 await x.edit("`🔄 Done Generated... Now Sending You`")
 
-    logo_id = logo.replace("https://telegra.ph//file/","").replace(".jpg","").strip()
-    await message.reply_photo(logo,caption="**🖼 Logo Generated By @JP_Jeol_org**",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="Upload As File 📁", callback_data=f"flogo {logo_id}")]]))
-    await x.delete()
-  except FloodWait:
-    pass
-  except Exception as e:
-    try:
-      await x.delete()
-    except:
-      pass
-    return await message.reply_text("`❌ Something Went Wrong...`\n\nReport This Error In @BETA_BOTSUPPORT")
+                 logo_id = logo.replace("https://telegra.ph//file/","").replace(".jpg","").strip()
+                 await message.reply_photo(logo,caption="**🖼 Logo Generated By @JP_Jeol_org**",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="Upload As File 📁", callback_data=f"flogo {logo_id}")]]))
+                 await x.delete()
+               except FloodWait:
+                 pass
+               except Exception as e:
+                 try:
+                   await x.delete()
+                 except:
+                   pass
+                 return await message.reply_text("`❌ Something Went Wrong...`\n\nReport This Error In @BETA_BOTSUPPORT")
 
 # Square Logo
 @app.on_message(filters.command("logosq") & filters.incoming & filters.text & ~filters.forwarded & (
   filters.group | filters.private))
 async def logo(bot, message):
-  try:
-    text = message.text.replace("logosq","").replace("/","").replace("@beta_bot_updates","").strip().upper()
+    if FORCE_SUB:   
+        try:             
+            user = await bot.get_chat_member(FORCE_SUB, message.from_user.id)
+            if user.status == "kicked":
+               await message.reply_text("Sorry, You're Banned")
+               return
+        except UserNotParticipant:
+            await message.reply_text(
+                text="**sorry bro നിങ്ങൾ ഞങ്ങളുടെ ചാനലിൽ ജോയിൻ ചെയ്തിട്ടില്ല താഴെയുള്ള ബട്ടനിൽ ക്ലിക്ക് ചെയ്ത് join ചെയ്യൂ എന്നിട്ട് വീണ്ടും start കൊടുക്കൂ 🙏**",
+                reply_markup=InlineKeyboardMarkup([
+                    [ InlineKeyboardButton(text="📢𝙹𝚘𝚒𝚗 𝙼𝚢 𝚄𝚙𝚍𝚊𝚝𝚎 𝙲𝚑𝚊𝚗𝚗𝚎𝚕📢", url=f"https://t.me/{FORCE_SUB}")]
+              ])
+            )
+            return
+        else:  
+             try:
+               text = message.text.replace("logosq","").replace("/","").replace("@beta_bot_updates","").strip().upper()
       
-    if text == "":
-      return await message.reply_text(HELP)
+               if text == "":
+                 return await message.reply_text(HELP)
   
-    x = await message.reply_text("`🔍 Generating Logo For You...`")  
-    logo = await generate_logo(text,True)
+               x = await message.reply_text("`🔍 Generating Logo For You...`")  
+               logo = await generate_logo(text,True)
   
-    if "telegra.ph" not in logo:
-      return await x.edit("`❌ Something Went Wrong...`\n\nReport This Error In @BETA_BOTSUPPORT")
+               if "telegra.ph" not in logo:
+                 return await x.edit("`❌ Something Went Wrong...`\n\nReport This Error In @BETA_BOTSUPPORT")
         
-    if "error" in logo:
-      return await x.edit(f"`❌ Something Went Wrong...`\n\nReport This Error In @BETA_BOTSUPPORT \n\n`{logo}`")
+               if "error" in logo:
+                 return await x.edit(f"`❌ Something Went Wrong...`\n\nReport This Error In @BETA_BOTSUPPORT \n\n`{logo}`")
       
-    await x.edit("`🔄 Done Generated... Now Sending You`")
+               await x.edit("`🔄 Done Generated... Now Sending You`")
     
-    logo_id = logo.replace("https://telegra.ph//file/","").replace(".jpg","").strip()
+               logo_id = logo.replace("https://telegra.ph//file/","").replace(".jpg","").strip()
     
-    await message.reply_photo(logo,caption="**🖼 Logo Generated By @JP_Jeol_org**",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="Upload As File 📁", callback_data=f"flogo {logo_id}")]]))
-    await x.delete()
-  except FloodWait:
-    pass
-  except Exception as e:
-    try:
-      await x.delete()
-    except:
-      pass
-    return await message.reply_text("`❌ Something Went Wrong...`\n\nReport This Error In @BETA_BOTSUPPORT")
+               await message.reply_photo(logo,caption="**🖼 Logo Generated By @JP_Jeol_org**",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="Upload As File 📁", callback_data=f"flogo {logo_id}")]]))
+               await x.delete()
+             except FloodWait:
+               pass
+             except Exception as e:
+               try:
+                 await x.delete()
+               except:
+                 pass
+               return await message.reply_text("`❌ Something Went Wrong...`\n\nReport This Error In @BETA_BOTSUPPORT")
 
 #broadcast
 
