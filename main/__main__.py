@@ -136,8 +136,8 @@ async def broadcast(bot, message):
      	pass
 
 @app.on_message(filters.private & filters.user(ADMIN) & filters.command(["users"]))
-async def get_users(app: app, message: Message):    
-    msg = await client.send_message(chat_id=message.chat.id, text="അവിടെ നില്ല് ഇപ്പോ തരാം 🤨")
+async def get_users(bot, message):    
+    msg = await bot.send_message(chat_id=message.chat.id, text="അവിടെ നില്ല് ഇപ്പോ തരാം 🤨")
     ids = getid()
     tot = len(ids)
     await msg.edit(f"Total uses = {tot}")
