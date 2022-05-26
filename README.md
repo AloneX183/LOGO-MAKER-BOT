@@ -5,10 +5,6 @@
 
 <p align="center" > <img alt="GitHub Forks" src="https://img.shields.io/github/forks/Jeolpaul/LOGO-MAKER-BOT?label=%F0%9F%8D%B4Forks&logoColor=blue&style=social"> <img alt="GitHub Repo Stars" src="https://img.shields.io/github/stars/Jeolpaul/LOGO-MAKER-BOT?label=%E2%AD%90%EF%B8%8FStars&logoColor=blue&style=social"> </p>
 
-### 📘 Powered By <a href="https://techzbotsapi.herokuapp.com/">TechZBots API</a>
-* **Docs :** https://techzbotsapi.herokuapp.com/docs
-* **Base Url :** `https://techzbotsapi.herokuapp.com/logo?text=`
-* **Base Url For Square Logos :** `https://techzbotsapi.herokuapp.com/logo?square=true&text=`
 
 ### ♻️ Features
 * 35+ Stylish & Cool Fonts
@@ -28,4 +24,4 @@
 <p><a href="https://heroku.com/deploy?template=https://github.com/Jeolpaul/LOGO-MAKER-BOT.git"><img src="https://img.shields.io/badge/Deploy%20To%20Heroku-blueviolet?style=for-the-badge&logo=heroku" width="200""/></a></p>
 
 ### 👤 Contact Me
-[![Telegram Channel](https://img.shields.io/static/v1?label=Join&message=Telegram%20Channel&color=blueviolet&style=for-the-badge&logo=telegram&logoColor=violet)](https://telegram.me/TechZBots)[![Telegram Group](https://img.shields.io/static/v1?label=Join&message=Telegram%20Group&color=blueviolet&style=for-the-badge&logo=telegram&logoColor=violet)](https://telegram.me/TechZBots_Support)
+[![Telegram Channel](https://img.shields.io/static/v1?label=Join&message=Telegram%20Channel&color=blueviolet&style=for-the-badge&logo=telegram&logoColor=violet)](https://t.me/beta_bot_updates)[![Telegram Group](https://img.shields.io/static/v1?label=Join&message=Telegram%20Group&color=blueviolet&style=for-the-badge&logo=telegram&logoColor=violet)](https://t.me/BETA_BOTSUPPORT)
