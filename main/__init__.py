@@ -1,16 +1,7 @@
 import aiohttp
 from pyrogram import Client
-from config import API_ID, API_HASH, BOT_TOKEN
-import os
+from config import API_ID, API_HASH, BOT_TOKEN          
 from config import *
-import logging 
-import logging.config
-                            
-logging.config.fileConfig('logging.conf')
-logging.getLogger().setLevel(logging.INFO)
-logging.getLogger("pyrogram").setLevel(logging.ERROR)             
-
-FORCE_SUB = os.environ.get("FORCE_SUB", None)           
 
 app = Client(
   "bot",
