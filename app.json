@@ -22,7 +22,7 @@
             "required": true
         },
         "FORCE_SUB": {
-            "description": "Your Force Subscribe Channel username without @ linke this :- mkn_bots_updates.",       
+            "description": "Your Force Subscribe Channel username without @ linke this :- beta_bots_updates.",       
             "required": false
         },
         "DB_URL": {
