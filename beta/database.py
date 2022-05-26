@@ -1,4 +1,4 @@
-from variables import DB_URL
+from config import DB_URL
 import pymongo 
 import os
 
