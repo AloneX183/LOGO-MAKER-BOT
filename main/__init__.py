@@ -22,7 +22,7 @@ class App(Client):
             plugins=dict(
                 root="main"
         )
-
+    )
     async def start(self):
        await super().start()
        me = await self.get_me() 
