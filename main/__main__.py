@@ -100,7 +100,7 @@ async def logo(bot, message):
     logo = await generate_logo(text,True)
   
     if "telegra.ph" not in logo:
-      return await x.edit("`❌ Something Went Wrong...`\n\nReport This Error In @BETA_BOTSUPPORT)
+      return await x.edit("`❌ Something Went Wrong...`\n\nReport This Error In @BETA_BOTSUPPORT")
         
     if "error" in logo:
       return await x.edit(f"`❌ Something Went Wrong...`\n\nReport This Error In @BETA_BOTSUPPORT \n\n`{logo}`")
@@ -118,7 +118,7 @@ async def logo(bot, message):
       await x.delete()
     except:
       pass
-    return await message.reply_text("`❌ Something Went Wrong...`\n\nReport This Error In @BETA_BOTSUPPORT)
+    return await message.reply_text("`❌ Something Went Wrong...`\n\nReport This Error In @BETA_BOTSUPPORT")
 
 #broadcast
 
