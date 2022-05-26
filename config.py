@@ -26,4 +26,4 @@ DB_URL = os.environ.get("DB_URL", "")
 
 ADMIN = [int(admin) if id_pattern.search(admin) else admin for admin in environ.get('ADMIN', '900873119').split()]
 
-
+FORCE_SUB = os.environ.get("FORCE_SUB", "beta_bot_updates")
