@@ -12,7 +12,7 @@ logging.getLogger("pyrogram").setLevel(logging.ERROR)
 
 FORCE_SUB = os.environ.get("FORCE_SUB", None)           
 
-class App(Client):
+class app(Client):
 
     def __init__(self):
         super().__init__(
@@ -45,7 +45,6 @@ class App(Client):
       logging.info("Bot Stopped")
 
 print("[INFO]: STARTING BOT...")
-app = App()
 app.start()
 
 print("[INFO]: STARTING AIOHTTP CLIENT")
