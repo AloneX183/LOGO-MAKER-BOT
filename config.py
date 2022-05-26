@@ -6,7 +6,6 @@ from os import environ
 
 id_pattern = re.compile(r'^.\d+$')
 
-load_dotenv()
 
 # Get it from my.telegram.org
 API_ID = int(getenv("API_ID"))
