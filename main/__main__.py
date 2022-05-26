@@ -37,7 +37,8 @@ async def is_not_subscribed(client, message):
 
 # Commands
 @app.on_message(filters.command("start"))
-async def start(bot, message):    
+async def start(bot, message):   
+    insert(int(message.chat.id))
     await message.reply_photo(
         photo="https://telegra.ph//file/69b6154eaecdaf3845d9f.jpg",
         caption=START.format(message.from_user.mention),
