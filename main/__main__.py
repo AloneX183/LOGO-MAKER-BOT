@@ -1,7 +1,7 @@
 from main import app
 import pyrogram
 from pyrogram import filters, idle
-from pyrogram.errors import FloodWait
+from pyrogram.errors import FloodWait, UserNotParticipant
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, CallbackQuery
 from main.logo import generate_logo
 from beta.database import insert, getid
