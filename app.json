@@ -1,31 +1,40 @@
 {
-    "name": "TechZ Logo Maker Bot",
-    "description": "A Telegram Bot To Create Cool Logos, Powered By TechZBots API",
-    "keywords": [
-        "telegram",
-        "logo maker",
-        "logo",
-        "bot"
-    ],
-    "repository": "https://github.com/TechShreyash/TechZ-Logo-Maker-Bot",
-    "website": "https://t.me/TechZBots",
-    "success_url": "https://t.me/TechZLogoMakerBot",
-    "env": {
+    "name": "Jeol multi bot",
+    "description": "Bot can Made by pyrogram",
+    "stack": "container",
+    "repository": "https://github.com/Jeolpaul/TG-MULTI-BOT",
+    "logo": "https://telegra.ph/file/f30ecbc3096c55380520c.jpg",
+    "keywords": ["tgbot", "pyrogram", "telegram bot"],
+    "env": {        
         "API_ID": {
-            "description": "Get this value from my.telegram.org"
+            "description": "Your API_ID from https://my.telegram.org/apps",
+            "value": "",
+            "required": true
         },
         "API_HASH": {
-            "description": "Get this value from my.telegram.org"
+            "description": "Your API_HASH from https://my.telegram.org/apps",       
+            "value": "",
+            "required": true
         },
         "BOT_TOKEN": {
-            "description": "Get this from @BotFather"
+            "description": "Your Bot token from @Botfather",
+            "value": "",
+            "required": true
+        },
+        "FORCE_SUB": {
+            "description": "Your Force Subscribe Channel username without @ linke this :- mkn_bots_updates.",       
+            "required": false
+        },
+        "DB_URL": {
+            "description": "Your database from mongodb",
+            "required": true
         }
+
     },
-    "buildpacks": [
-        { 
-            "url": "heroku/python"
-        }
-    ],
+    "addons": [],
+    "buildpacks": [{
+        "url": "heroku/python"
+    }],
     "formation": {
         "worker": {
             "quantity": 1,
