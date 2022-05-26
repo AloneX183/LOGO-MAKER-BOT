@@ -2,3 +2,5 @@ pyrogram==1.4.16
 TgCrypto
 aiohttp
 python-dotenv
+pymongo
+dnspython
