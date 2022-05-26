@@ -12,7 +12,7 @@ logging.getLogger("pyrogram").setLevel(logging.ERROR)
 
 FORCE_SUB = os.environ.get("FORCE_SUB", None)           
 
-class app(Client):
+class App(Client):
 
     def __init__(self):
         super().__init__(
@@ -44,7 +44,7 @@ class app(Client):
       await super().stop()
       logging.info("Bot Stopped")
 
-
+app = App()
 app.start()
 
 session = aiohttp.ClientSession()
