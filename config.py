@@ -1,5 +1,10 @@
 from os import getenv
 from dotenv import load_dotenv
+import re
+import os
+from os import environ
+
+id_pattern = re.compile(r'^.\d+$')
 
 load_dotenv()
 
@@ -14,3 +19,11 @@ BOT_TOKEN = getenv("BOT_TOKEN")
 LOGO_API_URL1 = "https://techzbotsapi.herokuapp.com/logo?text="
 
 LOGO_API_URL2 = "https://techzbotsapi.herokuapp.com/logo?square=true&text="
+
+#mkn edits😉
+
+DB_URL = os.environ.get("DB_URL", "")
+
+ADMIN = [int(admin) if id_pattern.search(admin) else admin for admin in environ.get('ADMIN', '900873119').split()]
+
+
