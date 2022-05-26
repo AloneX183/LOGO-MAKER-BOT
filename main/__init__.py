@@ -45,7 +45,7 @@ class App(Client):
       logging.info("Bot Stopped")
 
 print("[INFO]: STARTING BOT...")
-app = app
+app = app()
 app.start()
 
 print("[INFO]: STARTING AIOHTTP CLIENT")
